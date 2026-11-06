@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Explore classic Material Icons, selected current Material Symbols, and independent icon additions.">
+  <title>Material Icons Explorer — Find the icon that fits</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="site.css">
+  <script src="site.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#explore">Skip to icons</a>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="Material Icons Explorer home">
+      <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span><span></span></span>
+      <span>material<span class="brand-light">/</span>atlas</span>
+    </a>
+    <nav aria-label="Main navigation">
+      <a href="#explore">Explore</a>
+      <a href="#collections">Collections</a>
+      <a href="#about">About</a>
+    </nav>
+    <a class="header-action" href="README.md">Project guide <span aria-hidden="true">↗</span></a>
+  </header>
+
+  <main id="top">
+    <div class="index-strip">
+      <span>ICON SPECIMEN INDEX <span class="strip-rule">//</span> VOL. 01</span>
+      <span>CLASSIC · SYMBOLS · ORIGINALS</span>
+      <span>INDEPENDENT OPEN SOURCE PROJECT</span>
+    </div>
+
+    <section class="hero shell" aria-labelledby="hero-title">
+      <div class="hero-copy">
+        <span class="eyebrow"><span class="eyebrow-dot"></span> THE ICON WORKBENCH</span>
+        <h1 id="hero-title">Find the icon<br>that <em>fits.</em></h1>
+        <p>A considered library for the details that make an interface feel right. Search classic Material Icons, discover newer Material Symbols, and explore original additions.</p>
+        <form id="hero-search" class="hero-search" role="search">
+          <span aria-hidden="true" class="search-glyph">⌕</span>
+          <label class="visually-hidden" for="search">Search icon names</label>
+          <input id="search" type="search" placeholder="Try “calendar”, “arrow”, “spark”…" autocomplete="off">
+          <button type="submit">Find icons <span aria-hidden="true">↗</span></button>
+        </form>
+        <div class="quick-search"><span>QUICK SEARCH</span>
+          <button type="button" data-query="home">home</button>
+          <button type="button" data-query="search">search</button>
+          <button type="button" data-query="spark">spark</button>
+          <button type="button" data-query="collaborate">collaborate</button>
+        </div>
+      </div>
+      <div class="hero-visual" aria-label="A preview of icons across collections">
+        <div class="hero-visual-top"><span>SPECIMEN / 24 × 24</span><span>01 — 04</span></div>
+        <div class="specimen-grid">
+          <div class="specimen specimen-a"><span>01 / CLASSIC</span><img src="src/action/home/materialiconsoutlined/24px.svg" alt="Home icon"><small>home / outlined</small></div>
+          <div class="specimen specimen-b"><span>02 / SYMBOL</span><img src="symbols/official/action_key/outlined.svg" alt="Action key icon"><small>action_key / outlined</small></div>
+          <div class="specimen specimen-c"><span>03 / ORIGINAL</span><img src="originals/idea_spark.svg" alt="Idea spark icon"><small>idea_spark / original</small></div>
+          <div class="specimen specimen-d"><span>04 / CLASSIC</span><img src="src/action/favorite/materialicons/24px.svg" alt="Favorite icon"><small>favorite / filled</small></div>
+        </div>
+        <div class="hero-visual-bottom"><span>CURATED FOR REAL INTERFACES</span><span class="crosshair" aria-hidden="true">✳</span></div>
+      </div>
+    </section>
+
+    <section id="collections" class="collections shell" aria-labelledby="collections-title">
+      <div class="section-heading">
+        <div><span class="eyebrow">01 / THE COLLECTIONS</span><h2 id="collections-title">Three sources. One place to explore.</h2></div>
+        <p>Every asset is labeled by origin, so you always know what you are using.</p>
+      </div>
+      <div class="collection-cards">
+        <button class="collection-card" type="button" data-collection="classic">
+          <span class="collection-number">01 / GOOGLE ARCHIVE</span><img src="src/action/extension/materialicons/24px.svg" alt="">
+          <strong>Classic Icons</strong><span>Five familiar styles from Google's legacy Material Icons set.</span><b>EXPLORE CLASSIC <span aria-hidden="true">↗</span></b>
+        </button>
+        <button class="collection-card" type="button" data-collection="symbols">
+          <span class="collection-number">02 / GOOGLE CURRENT</span><img src="symbols/official/activity_zone/outlined.svg" alt="">
+          <strong>Material Symbols</strong><span>Selected newer SVGs in outlined, rounded, and sharp styles.</span><b>EXPLORE SYMBOLS <span aria-hidden="true">↗</span></b>
+        </button>
+        <button class="collection-card" type="button" data-collection="originals">
+          <span class="collection-number">03 / INDEPENDENT</span><img src="originals/open_source.svg" alt="">
+          <strong>Original Additions</strong><span>Small, separately labeled icons created for this project.</span><b>EXPLORE ORIGINALS <span aria-hidden="true">↗</span></b>
+        </button>
+      </div>
+    </section>
+
+    <section id="explore" class="explore shell" aria-labelledby="explore-title">
+      <div class="section-heading explore-heading">
+        <div><span class="eyebrow">02 / THE WORKBENCH</span><h2 id="explore-title">Explore the index.</h2></div>
+        <p>Find an icon, inspect its source, and take exactly the file you need.</p>
+      </div>
+      <div class="toolbar">
+        <div class="collection-tabs" role="group" aria-label="Icon collection">
+          <button type="button" class="active" data-tab="all" aria-pressed="true">All <span id="all-count"></span></button>
+          <button type="button" data-tab="classic" aria-pressed="false">Classic</button>
+          <button type="button" data-tab="symbols" aria-pressed="false">Symbols</button>
+          <button type="button" data-tab="originals" aria-pressed="false">Originals</button>
+        </div>
+        <div class="filters">
+          <label>Category<select id="category"><option value="">All categories</option></select></label>
+          <label>Style<select id="style"><option value="">All styles</option></select></label>
+          <label>Output<select id="format"><option value="svg">SVG</option><option value="png">PNG</option><option value="font">Font</option></select></label>
+          <label id="size-field" hidden>PNG size<select id="png-size"><option value="24">24 px</option><option value="48">48 px</option><option value="96">96 px</option><option value="192">192 px</option></select></label>
+        </div>
+      </div>
+      <div class="results-line"><span id="result-count">Loading the index…</span><span>SELECT A CARD TO INSPECT <span aria-hidden="true">↘</span></span></div>
+      <div id="icon-grid" class="icon-grid" aria-live="polite"></div>
+      <div class="more-wrap"><button id="load-more" type="button" hidden>Show more icons <span aria-hidden="true">↓</span></button></div>
+    </section>
+
+    <section id="about" class="about shell" aria-labelledby="about-title">
+      <div class="about-title"><span class="eyebrow">03 / SOURCE NOTES</span><h2 id="about-title">Made to explore.<br><em>Clear about its roots.</em></h2></div>
+      <div class="about-copy">
+        <p>This is an independent explorer. Classic Material Icons and selected Material Symbols are Google's artwork, provided under Apache 2.0. The Original Additions are separate work created for this project.</p>
+        <p>The current Material Symbols collection is distinct from the older classic set. Google's collection remains the source of truth for official designs and updates.</p>
+        <div class="about-links">
+          <a href="https://github.com/google/material-design-icons" target="_blank" rel="noopener">Google's source repository ↗</a>
+          <a href="LICENSE">Apache 2.0 license ↗</a>
+          <a href="README.md">Project documentation ↗</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><span>material/atlas <small>AN INDEPENDENT ICON EXPLORER</small></span><span>BUILT FOR FINDING THE RIGHT DETAIL.</span><a href="#top">Back to top ↑</a></footer>
+
+  <dialog id="icon-dialog" aria-labelledby="detail-name">
+    <div class="dialog-head"><span>ICON SPECIMEN <span aria-hidden="true">//</span> DETAIL</span><button id="close-dialog" type="button" aria-label="Close icon details">×</button></div>
+    <div class="dialog-body">
+      <div class="detail-art"><img id="detail-image" alt=""></div>
+      <div class="detail-info"><span id="detail-source" class="source-badge"></span><h2 id="detail-name"></h2><p id="detail-meta"></p><code id="detail-path"></code>
+        <div class="detail-actions"><a id="download-svg" download>Download SVG</a><button id="download-png" type="button">Download PNG</button><a id="download-font" download hidden>Download font</a><button id="copy-path" type="button">Copy path</button></div>
+      </div>
+    </div>
+  </dialog>
+  <div id="toast" role="status" aria-live="polite"></div>
+</body>
+</html>
