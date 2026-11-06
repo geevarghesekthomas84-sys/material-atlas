@@ -7,6 +7,7 @@
 <p align="center">Find an icon, compare styles, and download the file you need.</p>
 
 <p align="center">
+  <a href="https://geevarghesekthomas84-sys.github.io/material-atlas/">Open the icon explorer</a> ·
   <a href="#quick-start">Quick start</a> ·
   <a href="#collections">Collections</a> ·
   <a href="#use-an-icon">Use an icon</a> ·
