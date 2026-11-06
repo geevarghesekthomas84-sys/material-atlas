@@ -1,60 +1,77 @@
-# Material Atlas — Icon Explorer
+<p align="center">
+  <img src="docs/readme-hero.svg" alt="Material Atlas: explore classic Material Icons, Material Symbols, and original icons" width="100%">
+</p>
 
-A searchable web page for Google's classic Material Icons, selected current Material Symbols, and independent additions. Download an SVG or export a PNG directly from the page.
+<h1 align="center">Material Atlas</h1>
 
-This is a compact copy prepared for GitHub. Google's artwork comes from [Material Design Icons](https://github.com/google/material-design-icons); the web page and original icons are additions to this copy. This project is not endorsed by Google.
+<p align="center">Find an icon, compare styles, and download the file you need.</p>
 
-## Try the gallery
+<p align="center">
+  <a href="#quick-start">Quick start</a> ·
+  <a href="#collections">Collections</a> ·
+  <a href="#use-an-icon">Use an icon</a> ·
+  <a href="#updating-the-library">Update the library</a>
+</p>
 
-From the repository root, start a local server:
+---
+
+Material Atlas is a static icon explorer built around Google's classic Material Icons archive, a selected set of newer Material Symbols, and six independent additions. Search by name, filter by collection, category, or style, inspect an icon, and export SVG or PNG. The classic collection also includes five local icon fonts.
+
+> [!NOTE]
+> This is an independent project. Google did not create or endorse Material Atlas. Google artwork and original additions are identified separately in the explorer.
+
+## Quick start
+
+Run a local server from the repository root:
 
 ```sh
 python -m http.server 8000
 ```
 
-Open **http://localhost:8000/**. A server is needed because the page loads the collection indexes; opening the HTML file directly may prevent those requests.
+Open **[localhost:8000](http://localhost:8000/)**. The page fetches its icon indexes, so opening `index.html` directly may not work.
 
-Search by icon name, switch collections, filter by category and style, and inspect an icon to choose an output:
+## Collections
 
-| Output | What the gallery does |
-| --- | --- |
-| SVG | Opens the included vector file. |
-| PNG | Downloads a PNG rendered in your browser at 24, 48, 96, or 192 px. |
-| Icon font | Opens the included font file for that style. |
+| Collection | Included here | Styles |
+| :-- | :-- | :-- |
+| **Classic Material Icons** | 6,862 SVG variants from the legacy Google archive | Filled, outlined, round, sharp, two tone where available |
+| **Material Symbols** | 42 selected SVG variants from a [pinned Google revision](symbols/README.md) | Outlined, rounded, sharp |
+| **Original additions** | 6 [independent SVGs](originals/README.md) | Original |
 
-Classic Icons have filled, outlined, round, sharp, and two tone styles where available. The selected Material Symbols have outlined, rounded, and sharp styles. The original icons form a separate independent set.
+The explorer supports name search, collection and style filters, icon inspection, SVG downloads, and browser-rendered PNG downloads at **24, 48, 96, or 192 px**. Select **Icon font** to get a classic font file for its style.
 
-## Use an icon in a project
+## Use an icon
 
-SVG files live at `src/<category>/<icon>/<style>/<size>px.svg`. For example:
+Classic SVGs follow `src/<category>/<icon>/<style>/<size>px.svg`. For example:
 
 ```html
 <img src="src/action/home/materialicons/24px.svg" alt="Home">
 ```
 
-The `font/` directory contains the five local font files. You can also use the [Google Fonts hosted Material Icons](https://fonts.google.com/icons):
+For the included fonts, see [`font/`](font/). You can also use Google's hosted Material Icons font:
 
 ```html
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Icons">
 <span class="material-icons" aria-hidden="true">home</span>
 ```
 
-## What is in this repository?
+## Project map
 
-- `src/` — the SVG artwork, grouped by category, icon name, and style.
-- `font/` — filled, outlined, round, sharp, and two tone fonts.
-- `preview/` — the static gallery and its generated icon index.
-- `symbols/` — selected current Material Symbols from a pinned Google revision.
-- `originals/` — six independent SVGs created for this project.
-- `index.html`, `site.css`, and `site.js` — the main web page, designed with Stitch and implemented as a static site.
-- `update/` — a Python tool for checking Google Fonts metadata and downloading updated assets.
-- `tests/` and `.github/workflows/` — updater tests and a manifest validation workflow.
+| Path | Purpose |
+| :-- | :-- |
+| [`index.html`](index.html), [`site.css`](site.css), [`site.js`](site.js) | Responsive explorer page |
+| [`src/`](src/) and [`font/`](font/) | Classic SVGs and five local fonts |
+| [`symbols/`](symbols/) | Selected current Material Symbols and sync script |
+| [`originals/`](originals/) | Independent artwork and attribution |
+| [`preview/`](preview/) | Gallery index generator and generated icon index |
+| [`update/`](update/) | Python updater for Google assets |
+| [`tests/`](tests/) and [`.github/workflows/`](.github/workflows/) | Tests and index validation |
 
-Android, iOS, and pre-rendered PNG folders are left out of this Git repository to keep it quick to clone. They can be distributed as separate release ZIPs. The web page's PNG export works without those folders. No Android or iOS links are shown in the compact gallery.
+Android, iOS, and pre-rendered PNG asset folders are distributed separately to keep this repository smaller. The gallery's PNG export works without them.
 
-## Update the assets
+## Updating the library
 
-Use Python 3.9 or newer. The updater has no third party dependencies and needs an internet connection.
+Use **Python 3.9+**. The updater has no third-party Python dependencies and needs an internet connection to fetch assets.
 
 ```sh
 python update/update_repo.py --help
@@ -64,16 +81,14 @@ python preview/build_manifest.py
 python -m unittest discover -s tests -v
 ```
 
-By default, the updater fetches SVGs and fonts. Use `--category`, `--style`, `--icon-limit`, or repeated `--format` options to narrow a run. For example:
+The updater fetches SVGs and fonts by default. Narrow a run with `--category`, `--style`, `--icon-limit`, or repeated `--format` options:
 
 ```sh
 python update/update_repo.py --category action --style "Material Icons Round" --format svg --refresh
 ```
 
-Explicitly filtered runs leave `update/current_versions.json` unchanged. Run `python preview/build_manifest.py` after changing SVGs and commit the refreshed `preview/icons.json`. The validation workflow checks that index and runs the tests.
+After changing classic SVGs, regenerate and commit `preview/icons.json`. Explicitly filtered updater runs leave `update/current_versions.json` unchanged. The validation workflow checks the index and runs the tests. See the [Material Symbols sync instructions](symbols/README.md) for that separate collection.
 
-For the selected newer official artwork, see [symbols/README.md](symbols/README.md). For a sensible way to suggest icon concepts or discuss this project with Google, see [docs/google-collaboration.md](docs/google-collaboration.md).
+## Attribution and collaboration
 
-## License and attribution
-
-The original artwork is by Google and is provided under the [Apache License 2.0](LICENSE). Preserve the license and copyright notices when redistributing this repository. See [CONTRIBUTING.md](CONTRIBUTING.md) for maintenance notes.
+Google's original artwork is provided under the [Apache License 2.0](LICENSE). Preserve the license and copyright notices when redistributing it. See [CONTRIBUTING.md](CONTRIBUTING.md) for project maintenance and [Google collaboration notes](docs/google-collaboration.md) for the upstream icon request process.
