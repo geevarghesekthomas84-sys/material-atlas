@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Material Icons Explorer</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header>
+    <div class="brand"><span class="mark">◆</span><span>Material Icons <small>Explorer</small></span></div>
+    <h1>Find the right icon.</h1>
+    <p>Browse the included artwork. Choose a style and format, then open or download an asset.</p>
+    <div class="controls">
+      <label>Search icons<input id="search" type="search" placeholder="Search, e.g. home or arrow" autofocus></label>
+      <label>Category<select id="category"><option value="">All categories</option></select></label>
+      <label>Style<select id="style"><option value="">All styles</option></select></label>
+      <label>Format<select id="format"><option value="svg">SVG</option><option value="png">PNG download</option><option value="font">Icon font</option></select></label>
+      <label id="size-label" hidden>PNG size<select id="png-size"><option value="24">24 px</option><option value="48">48 px</option><option value="96">96 px</option><option value="192">192 px</option></select></label>
+    </div>
+  </header>
+  <main>
+    <div class="summary"><span id="count">Loading icons…</span><span id="note">SVG and fonts included · PNG exported in your browser</span></div>
+    <div id="grid" class="grid" aria-live="polite"></div>
+    <button id="more" type="button" hidden>Show more</button>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>

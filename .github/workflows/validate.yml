@@ -1,0 +1,17 @@
+name: Validate
+on:
+  push:
+  pull_request:
+jobs:
+  python-and-assets:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Check updater and manifest
+        run: |
+          python -m unittest discover -s tests -v
+          python preview/build_manifest.py
+          git diff --exit-code -- preview/icons.json
