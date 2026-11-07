@@ -16,7 +16,7 @@
 
 ---
 
-Material Atlas is a static icon explorer built around Google's classic Material Icons archive, a selected set of newer Material Symbols, and six independent additions. Search by name, filter by collection, category, or style, inspect an icon, and export SVG or PNG. The classic collection also includes five local icon fonts.
+Material Atlas is a static icon explorer built around Google's classic Material Icons archive, a selected set of newer Material Symbols, and 18 independent additions. Search by name, filter by collection, category, or style, inspect an icon, and export SVG or PNG. The classic collection also includes five local icon fonts.
 
 > [!NOTE]
 > This is an independent project. Google did not create or endorse Material Atlas. Google artwork and original additions are identified separately in the explorer.
@@ -36,8 +36,8 @@ Open **[localhost:8000](http://localhost:8000/)**. The page fetches its icon ind
 | Collection | Included here | Styles |
 | :-- | :-- | :-- |
 | **Classic Material Icons** | 6,862 SVG variants from the legacy Google archive | Filled, outlined, round, sharp, two tone where available |
-| **Material Symbols** | 42 selected SVG variants from a [pinned Google revision](symbols/README.md) | Outlined, rounded, sharp |
-| **Original additions** | 6 [independent SVGs](originals/README.md) | Original |
+| **Material Symbols** | 138 selected SVG variants from a [pinned Google revision](symbols/README.md) | Outlined, rounded, sharp |
+| **Original additions** | 18 [independent SVGs](originals/README.md) | Original |
 
 The explorer supports name search, collection and style filters, icon inspection, SVG downloads, and browser-rendered PNG downloads at **24, 48, 96, or 192 px**. Select **Icon font** to get a classic font file for its style.
 

@@ -14,4 +14,5 @@ jobs:
         run: |
           python -m unittest discover -s tests -v
           python preview/build_manifest.py
-          git diff --exit-code -- preview/icons.json
+          python originals/build_manifest.py
+          git diff --exit-code -- preview/icons.json originals/manifest.json
