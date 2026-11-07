@@ -1,6 +1,6 @@
 # Use Material Atlas with AI assistants
 
-Material Atlas includes a reusable [AI skill](../skills/material-atlas/SKILL.md) and a local, read-only [MCP server](../mcp-server/index.js). The server searches 1,824 icon names across 7,654 SVG variants, reports styles and attribution, and retrieves the exact published SVG. It requires Node.js 20 or newer. No API key is needed.
+Material Atlas includes a reusable [AI skill](../skills/material-atlas/SKILL.md) and a local, read-only [MCP server](../mcp-server/index.js). The server searches 1,824 collection entries (1,617 distinct names) across 7,654 SVG variants, reports styles and attribution, and retrieves the exact published SVG. It requires Node.js 20 or newer. No API key is needed.
 
 Use an **absolute path** to `mcp-server/index.js` in the commands below. Replace `/absolute/path/to/material-atlas` with your checkout path; on Windows, a path such as `D:\projects\material-atlas\mcp-server\index.js` works. The server uses the bundled catalog and downloads SVG markup from the [public gallery](https://geevarghesekthomas84-sys.github.io/material-atlas/) only when `get_svg` is called.
 

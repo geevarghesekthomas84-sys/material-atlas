@@ -38,7 +38,7 @@ def main():
               "metadata_source": selection.get("source"),
               "symbols_revision": "10ecc14790612ca8fd164e3f4ffe9c16fc50d5b7", "icons": catalog}
     (HERE / "catalog.json").write_text(json.dumps(output, separators=(",", ":")) + "\n", encoding="utf-8")
-    print(f"Indexed {len(catalog)} icon names and {sum(len(item['variants']) for item in catalog)} variants for MCP")
+    print(f"Indexed {len(catalog)} collection entries, {len({item['name'] for item in catalog})} distinct names, and {sum(len(item['variants']) for item in catalog)} variants for MCP")
 
 
 if __name__ == "__main__":

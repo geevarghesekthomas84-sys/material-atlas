@@ -68,7 +68,7 @@ For the included fonts, see [`font/`](font/). You can also use Google's hosted M
 
 ## AI assistants
 
-Use the included [Material Atlas skill](skills/material-atlas/SKILL.md) and read-only [MCP server](mcp-server/index.js) to search icons, compare variants, and get exact SVGs from Codex, Claude Code, Gemini CLI, or GitHub Copilot CLI. The local server requires Node.js 20+ and no API key. A [hosted MCP Worker](hosted-mcp/README.md) supports ChatGPT and hosted Codex connections. See [AI integration setup](docs/ai-integrations.md) for client commands and plugin packaging. The generated catalog covers **1,824 icon names and 7,654 SVG variants**.
+Use the included [Material Atlas skill](skills/material-atlas/SKILL.md) and read-only [MCP server](mcp-server/index.js) to search icons, compare variants, and get exact SVGs from Codex, Claude Code, Gemini CLI, or GitHub Copilot CLI. The local server requires Node.js 20+ and no API key. A [hosted MCP Worker](hosted-mcp/README.md) supports ChatGPT and hosted Codex connections. See [AI integration setup](docs/ai-integrations.md) for client commands and plugin packaging. The generated catalog covers **1,824 collection entries (1,617 distinct names) and 7,654 SVG variants**.
 
 ## Project map
 
