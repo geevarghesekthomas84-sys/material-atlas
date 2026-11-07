@@ -1,0 +1,24 @@
+name: Icon idea
+description: Suggest an original icon for Material Atlas
+title: "Icon idea: "
+body:
+  - type: input
+    id: name
+    attributes:
+      label: Suggested name
+      description: Use a short snake_case name.
+      placeholder: example_icon
+    validations:
+      required: true
+  - type: textarea
+    id: use
+    attributes:
+      label: What should it communicate?
+      description: Describe the action or concept and where it would appear in an interface.
+    validations:
+      required: true
+  - type: textarea
+    id: references
+    attributes:
+      label: References or sketches
+      description: Optional links or sketches that clarify the idea. Please only share work you have permission to use.

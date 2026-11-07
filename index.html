@@ -3,8 +3,9 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Explore classic Material Icons, selected current Material Symbols, and independent icon additions.">
-  <title>Material Icons Explorer — Find the icon that fits</title>
+  <meta name="description" content="Search, compare, customize, and download classic Material Icons, Material Symbols, and original SVGs with Material Atlas.">
+  <title>Material Atlas — Icon Studio &amp; Explorer</title>
+  <link rel="canonical" href="https://geevarghesekthomas84-sys.github.io/material-atlas/">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
@@ -14,12 +15,13 @@
 <body>
   <a class="skip-link" href="#explore">Skip to icons</a>
   <header class="site-header">
-    <a class="brand" href="#top" aria-label="Material Icons Explorer home">
+    <a class="brand" href="#top" aria-label="Material Atlas home">
       <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span><span></span></span>
       <span>material<span class="brand-light">/</span>atlas</span>
     </a>
     <nav aria-label="Main navigation">
       <a href="#explore">Explore</a>
+      <a href="#studio">Studio</a>
       <a href="#collections">Collections</a>
       <a href="#about">About</a>
     </nav>
@@ -103,13 +105,45 @@
           <label id="size-field" hidden>PNG size<select id="png-size"><option value="24">24 px</option><option value="48">48 px</option><option value="96">96 px</option><option value="192">192 px</option></select></label>
         </div>
       </div>
+      <label class="favorites-filter"><input id="favorites-only" type="checkbox"> Show saved icons <span id="favorite-count">0</span></label>
       <div class="results-line"><span id="result-count">Loading the index…</span><span>SELECT A CARD TO INSPECT <span aria-hidden="true">↘</span></span></div>
       <div id="icon-grid" class="icon-grid" aria-live="polite"></div>
       <div class="more-wrap"><button id="load-more" type="button" hidden>Show more icons <span aria-hidden="true">↓</span></button></div>
     </section>
 
+    <section id="studio" class="studio shell" aria-labelledby="studio-title">
+      <div class="section-heading"><div><span class="eyebrow">03 / ICON STUDIO</span><h2 id="studio-title">Make it yours.</h2></div><p>Compare styles, tune a preview, and collect exactly the icons your project needs.</p></div>
+      <div class="studio-layout">
+        <div class="studio-controls">
+          <div class="studio-kicker">CURRENT SPECIMEN</div>
+          <h3 id="studio-name">Choose an icon above</h3>
+          <p id="studio-source">Open any icon card to start comparing its styles.</p>
+          <div id="studio-variants" class="studio-variants" aria-label="Available styles"></div>
+          <div class="studio-fields">
+            <label>Icon color <input id="studio-color" type="color" value="#245ae5"></label>
+            <label>Background <select id="studio-bg"><option value="light">Paper</option><option value="dark">Ink</option><option value="blue">Blue</option></select></label>
+            <label>Preview size <input id="studio-size" type="range" min="24" max="144" step="8" value="80"><output id="studio-size-output">80 px</output></label>
+          </div>
+          <fieldset id="symbols-controls" class="symbols-controls" hidden>
+            <legend>Live Material Symbols font</legend>
+            <p>Preview font variations from Google Fonts. SVG downloads use the pinned artwork in this repository.</p>
+            <label><input id="symbol-live" type="checkbox"> Use live font preview</label>
+            <label>Fill <input id="symbol-fill" type="range" min="0" max="1" step="1" value="0"><output id="symbol-fill-output">0</output></label>
+            <label>Weight <input id="symbol-weight" type="range" min="100" max="700" step="100" value="400"><output id="symbol-weight-output">400</output></label>
+            <label>Grade <input id="symbol-grade" type="range" min="-50" max="200" step="25" value="0"><output id="symbol-grade-output">0</output></label>
+            <label>Optical size <input id="symbol-optical" type="range" min="20" max="48" step="4" value="24"><output id="symbol-optical-output">24</output></label>
+          </fieldset>
+        </div>
+        <div class="studio-workspace">
+          <div class="studio-stage light" id="studio-stage" aria-label="Customized icon preview"><img id="studio-image" alt=""><span id="studio-symbol-glyph" hidden></span></div>
+          <div class="studio-actions"><button id="studio-copy-svg" type="button" disabled>Copy SVG</button><button id="studio-copy-code" type="button" disabled>Copy HTML / JSX</button><button id="studio-add-pack" type="button" disabled>Add to pack</button><button id="studio-share" type="button" disabled>Copy link</button></div>
+          <div class="pack-panel"><div><span class="studio-kicker">YOUR ICON PACK</span><h3><span id="pack-count">0</span> selected</h3></div><p>The ZIP contains the original SVG files, license, and source notes.</p><div class="pack-actions"><button id="pack-download" type="button" disabled>Download ZIP</button><button id="pack-clear" type="button" disabled>Clear</button></div><ul id="pack-list" aria-label="Selected icons"></ul></div>
+        </div>
+      </div>
+    </section>
+
     <section id="about" class="about shell" aria-labelledby="about-title">
-      <div class="about-title"><span class="eyebrow">03 / SOURCE NOTES</span><h2 id="about-title">Made to explore.<br><em>Clear about its roots.</em></h2></div>
+      <div class="about-title"><span class="eyebrow">04 / SOURCE NOTES</span><h2 id="about-title">Made to explore.<br><em>Clear about its roots.</em></h2></div>
       <div class="about-copy">
         <p>This is an independent explorer. Classic Material Icons and selected Material Symbols are Google's artwork, provided under Apache 2.0. The Original Additions are separate work created for this project.</p>
         <p>The current Material Symbols collection is distinct from the older classic set. Google's collection remains the source of truth for official designs and updates.</p>
@@ -129,10 +163,11 @@
     <div class="dialog-body">
       <div class="detail-art"><img id="detail-image" alt=""></div>
       <div class="detail-info"><span id="detail-source" class="source-badge"></span><h2 id="detail-name"></h2><p id="detail-meta"></p><code id="detail-path"></code>
-        <div class="detail-actions"><a id="download-svg" download>Download SVG</a><button id="download-png" type="button">Download PNG</button><a id="download-font" download hidden>Download font</a><button id="copy-path" type="button">Copy path</button></div>
+        <div class="detail-actions"><a id="download-svg" download>Download SVG</a><button id="download-png" type="button">Download PNG</button><a id="download-font" download hidden>Download font</a><button id="copy-path" type="button">Copy path</button><button id="compare-styles" type="button">Open in Studio</button><button id="save-favorite" type="button">Save icon</button><button id="add-to-pack" type="button">Add to pack</button><button id="share-icon" type="button">Copy link</button></div>
       </div>
     </div>
   </dialog>
   <div id="toast" role="status" aria-live="polite"></div>
+  <script src="studio.js" defer></script>
 </body>
 </html>

@@ -16,3 +16,12 @@ jobs:
           python preview/build_manifest.py
           python originals/build_manifest.py
           git diff --exit-code -- preview/icons.json originals/manifest.json
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - name: Browser checks
+        run: |
+          npm ci
+          npx playwright install --with-deps chromium
+          npm run test:browser

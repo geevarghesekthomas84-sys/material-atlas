@@ -13,6 +13,41 @@ let shown = 0;
 let selected = null;
 let toastTimer;
 
+const queryAliases = {
+  heart: "favorite", love: "favorite", trash: "delete", bin: "delete",
+  gear: "settings", cog: "settings", magnifier: "search", house: "home",
+  user: "account", person: "account", robot: "smart_toy", moon: "dark_mode",
+  sparkle: "spark", calendar: "calendar", upload: "upload", download: "download"
+};
+
+function oneEditApart(a, b) {
+  if (Math.abs(a.length - b.length) > 1) return false;
+  let i = 0, j = 0, edits = 0;
+  while (i < a.length && j < b.length) {
+    if (a[i] === b[j]) { i++; j++; continue; }
+    if (++edits > 1) return false;
+    if (a.length >= b.length) i++;
+    if (a.length <= b.length) j++;
+  }
+  return edits + (a.length - i) + (b.length - j) <= 1;
+}
+
+function matchScore(item, query) {
+  if (!query) return 1;
+  const name = item.name.toLowerCase();
+  const words = `${name} ${item.category}`.split(/[_\s-]+/);
+  const terms = query.toLowerCase().trim().split(/\s+/).map(term => queryAliases[term] || term);
+  const scores = terms.map(term => {
+    if (name === term) return 100;
+    if (name.startsWith(term)) return 80;
+    if (words.some(word => word === term)) return 70;
+    if (name.includes(term) || words.some(word => word.startsWith(term))) return 50;
+    if (term.length >= 4 && words.some(word => oneEditApart(term, word))) return 20;
+    return 0;
+  });
+  return scores.every(Boolean) ? scores.reduce((sum, score) => sum + score, 0) : 0;
+}
+
 const styleNames = {
   materialicons: "Filled", materialiconsoutlined: "Outlined",
   materialiconsround: "Round", materialiconssharp: "Sharp",
@@ -107,13 +142,14 @@ function renderNext() {
 function update() {
   $("#size-field").hidden = format.value !== "png";
   const q = search.value.trim().toLowerCase();
-  matches = available().filter(item =>
-    (!q || item.name.includes(q) || item.category.includes(q))
-    && (!category.value || item.category === category.value)
-    && (!style.value || item.style === style.value));
+  matches = available().map(item => ({item, score: matchScore(item, q)})).filter(({item, score}) =>
+    score && (!category.value || item.category === category.value)
+    && (!style.value || item.style === style.value)
+    && (!$("#favorites-only").checked || window.Atlas?.isFavorite?.(item)))
+    .sort((a, b) => q ? b.score - a.score : 0).map(({item}) => item);
   grid.replaceChildren();
   shown = 0;
-  $("#result-count").textContent = `${matches.length.toLocaleString()} icon variants${q ? ` matching “${q}”` : ""}`;
+  $("#result-count").textContent = `${matches.length.toLocaleString()} icon ${matches.length === 1 ? "variant" : "variants"}${q ? ` matching “${q}”` : ""}`;
   renderNext();
 }
 
@@ -134,6 +170,7 @@ function inspect(item) {
     font.download = fontFiles[item.style];
   }
   dialog.showModal();
+  window.Atlas?.onInspect?.(item);
 }
 
 function downloadPng(item) {
@@ -192,18 +229,22 @@ pngSize.addEventListener("change", update);
 $("#load-more").addEventListener("click", renderNext);
 $("#close-dialog").addEventListener("click", () => dialog.close());
 dialog.addEventListener("click", event => { if (event.target === dialog) dialog.close(); });
+dialog.addEventListener("close", () => window.Atlas?.onClose?.());
 $("#download-png").addEventListener("click", () => { if (selected) downloadPng(selected); });
 $("#copy-path").addEventListener("click", async () => {
   if (!selected) return;
   try { await navigator.clipboard.writeText(selected.path); toast("Path copied"); }
   catch { toast("Clipboard unavailable"); }
 });
+$("#favorites-only").addEventListener("change", update);
 document.addEventListener("keydown", event => {
   if (event.key === "/" && !dialog.open && !/INPUT|TEXTAREA|SELECT/.test(document.activeElement.tagName)) {
     event.preventDefault();
     search.focus();
   }
 });
+
+window.Atlas = {getCatalog: () => catalog, getSelected: () => selected, inspect, update, toast, downloadPng, setCollection, ready: false};
 
 Promise.all([
   fetch("preview/icons.json").then(response => { if (!response.ok) throw Error("Classic icon index unavailable"); return response.json(); }),
@@ -220,6 +261,8 @@ Promise.all([
   $("#all-count").textContent = catalog.length.toLocaleString();
   updateFilters();
   update();
+  window.Atlas.ready = true;
+  window.Atlas.onReady?.();
 }).catch(error => {
   $("#result-count").textContent = error.message;
   toast("Could not load the icon index");

@@ -10,6 +10,7 @@
   <a href="https://geevarghesekthomas84-sys.github.io/material-atlas/">Open the icon explorer</a> ·
   <a href="#quick-start">Quick start</a> ·
   <a href="#collections">Collections</a> ·
+  <a href="#icon-studio">Icon Studio</a> ·
   <a href="#use-an-icon">Use an icon</a> ·
   <a href="#updating-the-library">Update the library</a>
 </p>
@@ -39,7 +40,15 @@ Open **[localhost:8000](http://localhost:8000/)**. The page fetches its icon ind
 | **Material Symbols** | 138 selected SVG variants from a [pinned Google revision](symbols/README.md) | Outlined, rounded, sharp |
 | **Original additions** | 18 [independent SVGs](originals/README.md) | Original |
 
-The explorer supports name search, collection and style filters, icon inspection, SVG downloads, and browser-rendered PNG downloads at **24, 48, 96, or 192 px**. Select **Icon font** to get a classic font file for its style.
+The explorer supports name search, collection and style filters, icon inspection, SVG downloads, and browser-rendered PNG downloads at **24, 48, 96, or 192 px**. Search also understands common terms such as `heart` for `favorite` and tolerates small spelling mistakes. Select **Icon font** to get a classic font file for its style.
+
+## Icon Studio
+
+Open an icon card and choose **Open in Studio**. Compare its available styles, change the preview color, background, and size, then copy the colored SVG or an HTML / JSX image snippet. **Copy link** makes a direct URL to that icon and style.
+
+**Save icon** keeps favorites in your browser. **Add to pack** collects up to 40 original SVG files for a single ZIP download, including license and source notes. Favorites and the pack use local browser storage; they are not tied to a GitHub account.
+
+For Material Symbols, the Studio can preview Google's variable font with fill, weight, grade, and optical size controls. This optional preview needs Google Fonts access. The included SVG downloads remain the pinned, static files described in [symbols/README.md](symbols/README.md).
 
 ## Use an icon
 
@@ -60,7 +69,7 @@ For the included fonts, see [`font/`](font/). You can also use Google's hosted M
 
 | Path | Purpose |
 | :-- | :-- |
-| [`index.html`](index.html), [`site.css`](site.css), [`site.js`](site.js) | Responsive explorer page |
+| [`index.html`](index.html), [`site.css`](site.css), [`site.js`](site.js), [`studio.js`](studio.js) | Responsive explorer and Icon Studio |
 | [`src/`](src/) and [`font/`](font/) | Classic SVGs and five local fonts |
 | [`symbols/`](symbols/) | Selected current Material Symbols and sync script |
 | [`originals/`](originals/) | Independent artwork and attribution |

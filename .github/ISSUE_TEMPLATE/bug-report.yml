@@ -1,0 +1,18 @@
+name: Bug report
+description: Report a gallery, download, or icon issue
+title: "Bug: "
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: What happened?
+      description: Include the icon name, collection, and browser if relevant.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: "1. Search for...\n2. Select...\n3. Click..."
+    validations:
+      required: true
