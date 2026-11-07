@@ -4,11 +4,13 @@ const {execFileSync} = require("node:child_process");
 
 test("synonym search finds icons", async ({page}) => {
   await page.goto("/");
-  await expect(page.locator("#result-count")).toContainText("7,018 icon variants");
+  await expect(page.locator("#result-count")).toContainText("7,654 icon variants");
   await page.locator("#search").fill("heart");
   await expect(page.getByRole("button", {name: /Inspect favorite in/}).first()).toBeVisible();
   await page.locator("#search").fill("setings");
   await expect(page.getByRole("button", {name: /Inspect settings in/}).first()).toBeVisible();
+  await page.locator("#search").fill("hamburger");
+  await expect(page.getByRole("button", {name: /Inspect menu in Material Symbols/}).first()).toBeVisible();
 });
 
 test("studio compares styles and exports a ZIP", async ({page}) => {

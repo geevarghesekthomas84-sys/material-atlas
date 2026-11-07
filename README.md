@@ -11,6 +11,7 @@
   <a href="#quick-start">Quick start</a> ·
   <a href="#collections">Collections</a> ·
   <a href="#icon-studio">Icon Studio</a> ·
+  <a href="#ai-assistants">AI assistants</a> ·
   <a href="#use-an-icon">Use an icon</a> ·
   <a href="#updating-the-library">Update the library</a>
 </p>
@@ -37,10 +38,10 @@ Open **[localhost:8000](http://localhost:8000/)**. The page fetches its icon ind
 | Collection | Included here | Styles |
 | :-- | :-- | :-- |
 | **Classic Material Icons** | 6,862 SVG variants from the legacy Google archive | Filled, outlined, round, sharp, two tone where available |
-| **Material Symbols** | 138 selected SVG variants from a [pinned Google revision](symbols/README.md) | Outlined, rounded, sharp |
+| **Material Symbols** | 774 selected SVG variants (258 names) from a [pinned Google revision](symbols/README.md) | Outlined, rounded, sharp |
 | **Original additions** | 18 [independent SVGs](originals/README.md) | Original |
 
-The explorer supports name search, collection and style filters, icon inspection, SVG downloads, and browser-rendered PNG downloads at **24, 48, 96, or 192 px**. Search also understands common terms such as `heart` for `favorite` and tolerates small spelling mistakes. Select **Icon font** to get a classic font file for its style.
+The explorer supports name search, collection and style filters, icon inspection, SVG downloads, and browser-rendered PNG downloads at **24, 48, 96, or 192 px**. Material Symbols also search Google's category and tag metadata. Search understands common terms such as `heart` for `favorite` and tolerates small spelling mistakes. Select **Icon font** to get a classic font file for its style.
 
 ## Icon Studio
 
@@ -65,6 +66,10 @@ For the included fonts, see [`font/`](font/). You can also use Google's hosted M
 <span class="material-icons" aria-hidden="true">home</span>
 ```
 
+## AI assistants
+
+Use the included [Material Atlas skill](skills/material-atlas/SKILL.md) and read-only [MCP server](mcp-server/index.js) to search icons, compare variants, and get exact SVGs from Codex, Claude Code, Gemini CLI, or GitHub Copilot CLI. The local server requires Node.js 20+ and no API key. A [hosted MCP Worker](hosted-mcp/README.md) supports ChatGPT and hosted Codex connections. See [AI integration setup](docs/ai-integrations.md) for client commands and plugin packaging. The generated catalog covers **1,824 icon names and 7,654 SVG variants**.
+
 ## Project map
 
 | Path | Purpose |
@@ -74,6 +79,7 @@ For the included fonts, see [`font/`](font/). You can also use Google's hosted M
 | [`symbols/`](symbols/) | Selected current Material Symbols and sync script |
 | [`originals/`](originals/) | Independent artwork and attribution |
 | [`preview/`](preview/) | Gallery index generator and generated icon index |
+| [`mcp-server/`](mcp-server/), [`skills/material-atlas/`](skills/material-atlas/) | AI tools and icon selection guidance |
 | [`update/`](update/) | Python updater for Google assets |
 | [`tests/`](tests/) and [`.github/workflows/`](.github/workflows/) | Tests and index validation |
 
@@ -102,6 +108,8 @@ python update/update_repo.py --category action --style "Material Icons Round" --
 ```
 
 After changing classic SVGs, regenerate and commit `preview/icons.json`. Explicitly filtered updater runs leave `update/current_versions.json` unchanged. The validation workflow checks the index and runs the tests. See the [Material Symbols sync instructions](symbols/README.md) for that separate collection.
+
+After changing any collection, run `python mcp-server/build_catalog.py` to refresh the AI catalog.
 
 ## Attribution and collaboration
 

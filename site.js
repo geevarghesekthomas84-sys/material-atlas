@@ -36,12 +36,14 @@ function matchScore(item, query) {
   if (!query) return 1;
   const name = item.name.toLowerCase();
   const words = `${name} ${item.category}`.split(/[_\s-]+/);
+  const tags = item.tags || [];
   const terms = query.toLowerCase().trim().split(/\s+/).map(term => queryAliases[term] || term);
   const scores = terms.map(term => {
     if (name === term) return 100;
     if (name.startsWith(term)) return 80;
     if (words.some(word => word === term)) return 70;
     if (name.includes(term) || words.some(word => word.startsWith(term))) return 50;
+    if (tags.some(tag => tag === term || tag.startsWith(term))) return 35;
     if (term.length >= 4 && words.some(word => oneEditApart(term, word))) return 20;
     return 0;
   });
@@ -249,11 +251,13 @@ window.Atlas = {getCatalog: () => catalog, getSelected: () => selected, inspect,
 Promise.all([
   fetch("preview/icons.json").then(response => { if (!response.ok) throw Error("Classic icon index unavailable"); return response.json(); }),
   fetch("symbols/manifest.json").then(response => { if (!response.ok) throw Error("Material Symbols index unavailable"); return response.json(); }),
+  fetch("symbols/selection.json").then(response => { if (!response.ok) throw Error("Material Symbols metadata unavailable"); return response.json(); }),
   fetch("originals/manifest.json").then(response => { if (!response.ok) throw Error("Original icon index unavailable"); return response.json(); })
-]).then(([classic, symbols, originals]) => {
+]).then(([classic, symbols, selection, originals]) => {
+  const symbolMeta = new Map(selection.icons.map(item => [item.name, item]));
   catalog = [
     ...classic.map(([category, name, style, file]) => ({collection: "classic", category, name, style, path: `src/${category}/${name}/${style}/${file}`})),
-    ...symbols.map(({name, style, path}) => ({collection: "symbols", category: "current symbols", name, style, path})),
+    ...symbols.map(({name, style, path}) => ({collection: "symbols", category: symbolMeta.get(name)?.category || "current symbols", tags: symbolMeta.get(name)?.tags || [], name, style, path})),
     ...originals.map(({name, path}) => ({collection: "originals", category: "independent additions", name, style: "original", path}))
   ];
   const weight = {symbols: 0, originals: 1, classic: 2};

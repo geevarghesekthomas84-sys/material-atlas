@@ -1,0 +1,22 @@
+{
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
+  "name": "material-atlas",
+  "version": "1.1.0",
+  "description": "Search, inspect, and use Material Atlas icons from AI assistants.",
+  "homepage": "https://geevarghesekthomas84-sys.github.io/material-atlas/",
+  "repository": "https://github.com/geevarghesekthomas84-sys/material-atlas",
+  "license": "Apache-2.0",
+  "author": {"name": "Material Atlas contributors"},
+  "extensions": {
+    "com.openai": {
+      "interface": {
+        "displayName": "Material Atlas",
+        "shortDescription": "Find and use UI icons",
+        "longDescription": "Search classic Material Icons, selected Material Symbols, and original Atlas icons. Inspect styles, source attribution, and exact SVG artwork.",
+        "developerName": "Material Atlas contributors",
+        "capabilities": ["Icon search", "SVG retrieval"],
+        "defaultPrompt": "Find an icon for my interface and show the best style and SVG source."
+      }
+    }
+  }
+}

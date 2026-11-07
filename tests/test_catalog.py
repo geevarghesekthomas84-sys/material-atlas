@@ -22,10 +22,13 @@ class CatalogTests(unittest.TestCase):
 
     def test_collection_manifests_are_complete(self):
         symbols = json.loads((ROOT / "symbols/manifest.json").read_text(encoding="utf-8"))
+        selection = json.loads((ROOT / "symbols/selection.json").read_text(encoding="utf-8"))["icons"]
         originals = json.loads((ROOT / "originals/manifest.json").read_text(encoding="utf-8"))
         symbol_variants = {(item["name"], item["style"]) for item in symbols}
         names = {item["name"] for item in symbols}
         self.assertEqual(len(symbols), len(symbol_variants))
+        self.assertEqual(names, {item["name"] for item in selection})
+        self.assertTrue(all(item["category"] and isinstance(item["tags"], list) for item in selection))
         self.assertEqual(
             {(name, style) for name in names for style in ("outlined", "rounded", "sharp")},
             symbol_variants,
