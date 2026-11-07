@@ -77,7 +77,11 @@ For the included fonts, see [`font/`](font/). You can also use Google's hosted M
 | [`update/`](update/) | Python updater for Google assets |
 | [`tests/`](tests/) and [`.github/workflows/`](.github/workflows/) | Tests and index validation |
 
-Android, iOS, and pre-rendered PNG asset folders are distributed separately to keep this repository smaller. The gallery's PNG export works without them.
+## Downloads
+
+The [v1.0.0 release](https://github.com/geevarghesekthomas84-sys/material-atlas/releases/tag/v1.0.0) provides separate ZIPs for classic Android, iOS, and pre-rendered PNG assets. Those bundles contain Google's **legacy Material Icons 4.0.0** artwork; they do not include newer Material Symbols or Material Atlas originals. Each ZIP includes the license and source notes. Verify downloads against [SHA-256 checksums](release/SHA256SUMS.txt).
+
+These large folders are kept out of the Git repository. The gallery's PNG export works without them. See the [changelog](CHANGELOG.md) for release details.
 
 ## Updating the library
 
